@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Filmes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid *ngIf="checking">
+    
+    <ion-list>      
+      <ion-item *ngFor="let filme of filmes; let ix = index">
+        <ion-col size="1">
+          <ion-button color="success">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+
+          <ion-button color="danger">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="1">
+          {{ filme.cod }}
+        </ion-col>
+        <ion-col size="4">
+            {{ filme.titulo }}
+        </ion-col>
+        <ion-col size="4">
+            <!-- É possível chamar métodos como resultado -->
+            {{ maskSinopse(filme.sinopse, 40) }}
+        </ion-col>
+        <ion-col size="1">
+            {{ filme.ano }}
+        </ion-col>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+  
+  <ion-grid *ngIf="!checking">
+    GRID 2
+  </ion-grid>
+
+  <!-- cuidado ao utilizar [hidden], pois o elemento só não é apresentado, mas é compilado -->
+  <ion-grid [hidden]="!checking">
+    GRID 1
+  </ion-grid>
+  
+  <ion-grid [hidden]="checking">
+    GRID 2
+  </ion-grid>
+</ion-content>
